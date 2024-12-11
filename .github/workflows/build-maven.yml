@@ -46,6 +46,7 @@ jobs:
         application-id: Github-SCA
         stage: "build"
         scan-targets: .
+        upload-sarif-file: true
 
     - name: Save Sonatype SBOM
       if: steps.evaluate.outputs.scan-id && always() 
