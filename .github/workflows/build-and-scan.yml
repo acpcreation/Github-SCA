@@ -32,30 +32,30 @@ jobs:
     - name: Build with Maven
       run: mvn clean package
 
-    # - name: Sonatype Lifecycle SCA Scan
-    #   id: evaluate
-    #   uses: sonatype/actions/evaluate@v1
-    #   with:
-    #     iq-server-url: https://iq.aplattel.ngrok.io/
-    #     username: admin
-    #     password: admin!23
-    #     application-id: Github-SCA
-    #     stage: "build"
-    #     scan-targets: .
-    #     upload-sarif-file: true
+    - name: Sonatype Lifecycle SCA Scan
+      id: evaluate
+      uses: sonatype/actions/evaluate@v1
+      with:
+        iq-server-url: https://iq.aplattel.ngrok.io/
+        username: admin
+        password: admin!23
+        application-id: Github-SCA
+        stage: "build"
+        scan-targets: .
+        upload-sarif-file: true
 
-    # - name: Save Sonatype SBOM
-    #   if: steps.evaluate.outputs.scan-id
-    #   uses: sonatype/actions/fetch-sbom@v1
-    #   with:
-    #     iq-server-url: https://iq.aplattel.ngrok.io/
-    #     username: admin
-    #     password: admin!23
-    #     application-id: Github-SCA
-    #     scan-id: ${{ steps.evaluate.outputs.scan-id }}
-    #     sbom-standard: spdx
-    #     sbom-version: 2.3
-    #     artifact-name: sonatype-bom
+    - name: Save Sonatype SBOM
+      if: steps.evaluate.outputs.scan-id
+      uses: sonatype/actions/fetch-sbom@v1
+      with:
+        iq-server-url: https://iq.aplattel.ngrok.io/
+        username: admin
+        password: admin!23
+        application-id: Github-SCA
+        scan-id: ${{ steps.evaluate.outputs.scan-id }}
+        sbom-standard: spdx
+        sbom-version: 2.3
+        artifact-name: sonatype-bom
 
     # - name: Upload Struts WAR
     #   uses: actions/upload-artifact@v4
@@ -63,15 +63,15 @@ jobs:
     #     name: target
     #     path: target/struts2-rest-showcase.war
 
-    - name: Run Fortify SSC SAST Scan
-      if: always()
-      uses: fortify/github-action@v1
-      with:
-        sast-scan: true
-        debricked-sca-scan: false
-      env:
-        SSC_URL: https://repo.aplattel.ngrok.io
-        SSC_TOKEN: ${{secrets.SSC_TOKEN}}
-        SC_SAST_TOKEN: ${{secrets.SC_SAST_CLIENT_AUTH_TOKEN}}
-        SSC_APPVERSION: GitHub-SCA:struts
+    # - name: Run Fortify SSC SAST Scan
+    #   if: always()
+    #   uses: fortify/github-action@v1
+    #   with:
+    #     sast-scan: true
+    #     debricked-sca-scan: false
+    #   env:
+    #     SSC_URL: https://repo.aplattel.ngrok.io
+    #     SSC_TOKEN: ${{secrets.SSC_TOKEN}}
+    #     SC_SAST_TOKEN: ${{secrets.SC_SAST_CLIENT_AUTH_TOKEN}}
+    #     SSC_APPVERSION: GitHub-SCA:struts
       
