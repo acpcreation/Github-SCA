@@ -73,7 +73,7 @@ version="1.0" encoding="UTF-8"?>
             <version>2.15.0</version>
         </dependency>
 
-        <!-- <dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
             <version>2.0.4</version>
@@ -82,7 +82,7 @@ version="1.0" encoding="UTF-8"?>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.0.4</version>
-        </dependency> -->
+        </dependency>
 
         <dependency>
             <groupId>org.richfaces</groupId>
@@ -106,11 +106,11 @@ version="1.0" encoding="UTF-8"?>
             <version>3.1</version>
         </dependency>
 
-        <dependency>
+        <!-- <dependency>
             <groupId>hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
             <version>1.8.0.7</version>
-        </dependency>
+        </dependency> -->
         <dependency>
             <groupId>wsdl4j</groupId>
             <artifactId>wsdl4j</artifactId>
